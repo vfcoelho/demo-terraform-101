@@ -4,7 +4,7 @@ cat <<EOF
     "type":"vars",
     "attributes": {
       "key": "identity",
-      "value": "jimbo",
+      "value": "$TF_VAR_identity",
       "category": "terraform",
       "hcl": false,
       "sensitive": false

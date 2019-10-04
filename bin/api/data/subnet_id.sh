@@ -4,7 +4,7 @@ cat <<EOF
     "type":"vars",
     "attributes": {
       "key": "subnet_id",
-      "value": "subnet-0ee95f34e3e3c4052",
+      "value": "$TF_VAR_subnet_id",
       "category": "terraform",
       "hcl": false,
       "sensitive": false

@@ -4,7 +4,7 @@ cat <<EOF
     "type":"vars",
     "attributes": {
       "key": "vpc_security_group_id",
-      "value": "sg-0c280b01eeb30aa2d",
+      "value": "$TF_VAR_vpc_security_group_id",
       "category": "terraform",
       "hcl": false,
       "sensitive": false
