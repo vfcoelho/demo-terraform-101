@@ -1,0 +1,4 @@
+identity              = ""
+ami                   = "ami-07d0cf3af28718ef8"
+subnet_id             = "subnet-0ee95f34e3e3c4052"
+vpc_security_group_id = "sg-0c280b01eeb30aa2d"

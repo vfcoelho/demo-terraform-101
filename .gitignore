@@ -11,3 +11,8 @@
 *.tfvars
 .terraform/
 terraform.tfstate*
+
+.ssh/
+.env.sh
+.secrets.sh
+.terraformrc

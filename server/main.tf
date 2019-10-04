@@ -1,26 +1,19 @@
-variable "ami" {
-}
-
-variable "num_webs" {
-}
-
-variable "subnet_id" {
-}
-
-variable "vpc_security_group_id" {
-}
-
-variable "identity" {
-}
+variable "ami" {}
+variable "num_webs" {}
+variable "subnet_id" {}
+variable "vpc_security_group_id" {}
+variable "identity" {}
+variable "private_key" {}
+variable "public_key" {}
 
 resource "aws_key_pair" "training" {
   key_name   = "${var.identity}-key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = "${base64decode(var.public_key)}"
 }
 
 resource "aws_instance" "web" {
   ami           = var.ami
-  instance_type = "t2.nano"
+  instance_type = "t3a.small"
   count         = var.num_webs
 
   subnet_id              = var.subnet_id
@@ -29,7 +22,7 @@ resource "aws_instance" "web" {
   key_name = aws_key_pair.training.id
 
   tags = {
-    Name       = "web ${count.index + 1}/${var.num_webs}"
+    Name       = "demo-terraform-101-${var.identity} web ${count.index + 1}/${var.num_webs}"
     Identity   = var.identity
     Created-by = "Terraform"
   }
@@ -37,8 +30,8 @@ resource "aws_instance" "web" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
-    host        = aws_instance.web.*.public_ip
+    private_key = base64decode(var.private_key)
+    host        = "${aws_instance.web[count.index].public_ip}"
   }
 
   provisioner "file" {
