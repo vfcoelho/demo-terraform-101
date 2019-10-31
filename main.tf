@@ -46,7 +46,7 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "zx-ventures"
     workspaces {
-      name = "demo-terraform-101-"
+      name = "demo-terraform-101-coelho"
     }
   }
 }
